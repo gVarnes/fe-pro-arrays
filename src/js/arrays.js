@@ -46,9 +46,9 @@ map(array, (item, index, array) => {
 */
 function filter(array, callback) {
   let resultArray = [];
-
   for (let i = 0; i < array.length; i++) {
-    if (callback(array[i], i, array) !== undefined) {
+    const resultOfFunction = callback(array[i], i, array);
+    if (typeof resultOfFunction !== 'undefined') {
       resultArray.push(callback(array[i], i, array));
     }
   }
