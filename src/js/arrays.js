@@ -5,8 +5,16 @@
  Помните, что вы передаете функцию, которая ожидает 3 аргумента, текущий элемент, индекс и сам массив. Автоматическая проверка будет это учитывать.
 */
 function forEach(array, callback) {
-
+  for (let i = 0; i < array.length; i++) {
+    array[i] = callback(array[i], i, array);
+  }
 }
+
+forEach(array, function (item, index, array) {
+  return item * 3;
+})
+
+
 
 /* Функция принимает в себе первым аргументом массив, вторым функцию которая будет вызываться для каждого элемента массива
  вот документация https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map
@@ -15,8 +23,17 @@ function forEach(array, callback) {
  Помните, что вы передаете функцию, которая ожидает 3 аргумента, текущий элемент, индекс и сам массив. Автоматическая проверка будет это учитывать.
 */
 function map(array, callback) {
+  let resultArray = [];
 
+  for (let i = 0; i < array.length; i++) {
+    resultArray.push(callback(array[i], i.array));
+  }
+  return resultArray;
 }
+
+map(array, (item, index, array) => {
+  return item * 5;
+})
 
 /* Функция принимает в себе первым аргументом массив, вторым функцию которая будет вызываться для каждого элемента массива
  вот документация https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter
@@ -25,8 +42,22 @@ function map(array, callback) {
  Помните, что вы передаете функцию, которая ожидает 3 аргумента, текущий элемент, индекс и сам массив. Автоматическая проверка будет это учитывать.
 */
 function filter(array, callback) {
+  let resultArray = [];
 
+  for (let i = 0; i < array.length; i++) {
+    if (callback(array[i], i, array) !== undefined) {
+      resultArray.push(callback(array[i], i, array));
+    }
+  }
+
+  return resultArray;
 }
+
+filter(array, (item, index, array) => {
+  if (index % 2 === 0) {
+    return item;
+  }
+})
 
 /* Функция принимает в себе первым аргументом массив, вторым функцию которая будет вызываться для каждого элемента массива, 3 аргумент изначальный вариант
  вот документация https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reduce
@@ -38,8 +69,16 @@ function filter(array, callback) {
  Помните, что вы передаете функцию, которая ожидает 3 аргумента, текущий элемент, индекс и сам массив. Автоматическая проверка будет это учитывать.
 */
 function reduce(array, callback, initialValue) {
-
+  for (let i = 0; i < array.length; i++) {
+    console.log(initialValue)
+    initialValue = callback(initialValue, array[i], i, array);
+  }
+  return initialValue;
 }
+
+reduce(array, (prev, curr, index, array) => {
+  return prev + curr;
+}, 0)
 
 /* Функция принимает в себе первым аргументом массив, вторым функцию которая будет вызываться для каждого элемента массива
  вот документация https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/some
@@ -48,8 +87,20 @@ function reduce(array, callback, initialValue) {
  Помните, что вы передаете функцию, которая ожидает 3 аргумента, текущий элемент, индекс и сам массив. Автоматическая проверка будет это учитывать.
 */
 function some(array, callback) {
-
+  for (let i = 0; i < array.length; i++) {
+    if (callback(array[i], i, array)) {
+      return true;
+    }
+  }
+  return false;
 }
+
+some(array, (item, index, array) => {
+  if (item > 3) {
+    return true;
+  }
+  return false;
+})
 
 /* Функция принимает в себе первым аргументом массив, вторым функцию которая будет вызываться для каждого элемента массива
  вот документация https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/some
@@ -58,8 +109,20 @@ function some(array, callback) {
  Помните, что вы передаете функцию, которая ожидает 3 аргумента, текущий элемент, индекс и сам массив. Автоматическая проверка будет это учитывать.
 */
 function every(array, callback) {
-
+  for (let i = 0; i < array.length; i++) {
+    if (!callback(array[i], i, array)) {
+      return false;
+    }
+  }
+  return true;
 }
+
+every(array, (item, index, array) => {
+  if (item > 0) {
+    return true;
+  }
+  return false;
+})
 
 // Эту часть не удаляем, она важна для проверки результата
 module.exports = {
