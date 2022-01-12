@@ -6,12 +6,12 @@
 */
 function forEach(array, callback) {
   for (let i = 0; i < array.length; i++) {
-    array[i] = callback(array[i], i, array);
+    callback(array[i], i, array);
   }
 }
 
 forEach(array, function (item, index, array) {
-  return item * 3;
+  console.log(item);
 })
 
 
