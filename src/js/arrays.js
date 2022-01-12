@@ -58,7 +58,7 @@ function filter(array, callback) {
 }
 
 filter(array, (item, index, array) => {
-  if (index % 2 === 0) {
+  if (item > 2) {
     return item;
   }
 })
