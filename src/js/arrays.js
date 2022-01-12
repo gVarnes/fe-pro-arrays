@@ -29,7 +29,7 @@ function map(array, callback) {
   let resultArray = [];
 
   for (let i = 0; i < array.length; i++) {
-    resultArray.push(callback(array[i], i.array));
+    resultArray.push(callback(array[i], i, array));
   }
   return resultArray;
 }
@@ -48,6 +48,7 @@ function filter(array, callback) {
   let resultArray = [];
   for (let i = 0; i < array.length; i++) {
     const resultOfFunction = callback(array[i], i, array);
+
     if (typeof resultOfFunction !== 'undefined') {
       resultArray.push(callback(array[i], i, array));
     }
