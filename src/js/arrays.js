@@ -48,18 +48,16 @@ function filter(array, callback) {
   let resultArray = [];
   for (let i = 0; i < array.length; i++) {
     const resultOfFunction = callback(array[i], i, array);
-
-    if (typeof resultOfFunction !== 'undefined') {
-      resultArray.push(callback(array[i], i, array));
+    if (resultOfFunction) {
+      resultArray.push(array[i]);
     }
   }
-
   return resultArray;
 }
 
-filter(array, (item, index, array) => {
-  if (item > 2) {
-    return item;
+const test3 = filter(array, (item, index, array) => {
+  if (index % 2 === 0) {
+    return true;
   }
 })
 
